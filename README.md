@@ -4,5 +4,5 @@ Members:
 Joel Oksanen,
 Ville Rajala,
 Martti Hänninen,
-Lauri Lähdesmäki,
+Lauri Lähdesmäki &
 Rafael Cakici
