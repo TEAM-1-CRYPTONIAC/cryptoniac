@@ -59,5 +59,12 @@ export default StyleSheet.create({
     width: 200, 
     height: 100,
     marginLeft: '25 %'
+  },
+  searchBar: {
+    flexDirection: 'row'
+  },
+  searchInput:
+  {
+    fontSize: 20
   }
 });
