@@ -1,42 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
-import styles from '../styles/Styles';
-import { getCryptoPrices } from './APIKEY'; 
+import { getCryptoDetails } from './APIKEY';
 
-const CryptoDetailPage = ({ route }) => {
+const Detailed = ({ route }) => {
   const { cryptoId } = route.params;
-  const [price, setPrice] = useState(null);
+  const [cryptoDetails, setCryptoDetails] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchPrices = async () => {
+    const fetchCryptoDetails = async () => {
       try {
-        const data = await getCryptoPrices();
-        const crypto = data.data.find(item => item.id === cryptoId);
-        if (crypto) {
-          setPrice(crypto.quote.USD.price);
-        } else {
-          throw new Error('Crypto not found');
-        }
+        const details = await getCryptoDetails(cryptoId);
+        setCryptoDetails(details);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching crypto prices:', error);
+        console.error('Error fetching crypto details:', error);
+        setError(error.message);
         setLoading(false);
       }
     };
 
-    fetchPrices();
+    fetchCryptoDetails();
   }, [cryptoId]);
 
   if (loading) {
     return <ActivityIndicator size="large" />;
   }
 
+  if (error) {
+    return (
+      <View>
+        <Text>Error: {error}</Text>
+      </View>
+    );
+  }
+
+  if (!cryptoDetails) {
+    return (
+      <View>
+        <Text>No data available for this cryptocurrency</Text>
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Price: ${price ? price.toFixed(2) : 'N/A'}</Text>
+    <View>
+      <Text>Name: {cryptoDetails.name}</Text>
+      <Text>Symbol: {cryptoDetails.symbol}</Text>
+      <Text>Price: ${cryptoDetails.price}</Text>
+      <Text>Market Cap: ${cryptoDetails.market_cap}</Text>
+      <Text>Volume (24h): ${cryptoDetails.volume_24h}</Text>
+      <Text>Circulating Supply: {cryptoDetails.circulating_supply}</Text>
+      <Text>Total Supply: {cryptoDetails.total_supply}</Text>
     </View>
   );
 };
 
-export default CryptoDetailPage;
+export default Detailed;
