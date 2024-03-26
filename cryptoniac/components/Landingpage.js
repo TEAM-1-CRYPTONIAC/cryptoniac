@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, FlatList, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
 import { getCryptoPrices } from './APIKEY';
 import styles from '../styles/Styles';
+import { Icon } from 'react-native-paper';
+
 
 
 const LandingPage = ({ navigation }) => {
@@ -43,13 +45,16 @@ const LandingPage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.searchBar}>
+      <Icon source={'database-search-outline'} size={36}/>
         <TextInput
         style={styles.searchInput}
         onChangeText={handleSearch}
         value={searchText}
         placeholder="Search by name..."
       />
-      
+      </View>
+
       <FlatList
         data={filteredCryptos}
         keyExtractor={(item) => item.id.toString()}
