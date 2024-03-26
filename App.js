@@ -1,5 +1,5 @@
 import React from 'react'; // Import React
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -20,7 +20,16 @@ export default function App() {
       <SafeAreaProvider>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Landing" component={LandingPage} />
+            <Stack.Screen name="Landing"         
+            options={{
+          headerRight: props => (
+            <Image
+              style={{ width: 100, height: 40 }}
+              source={require('./cryptoniac/assets/cryplogo.png')}
+              resizeMode="contain"
+            />
+          ),
+        }}component={LandingPage} />
             <Stack.Screen name="CryptoDetail" component={CryptoDetailPage} />
           </Stack.Navigator>
         </NavigationContainer>
