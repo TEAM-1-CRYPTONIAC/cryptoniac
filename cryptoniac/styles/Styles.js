@@ -55,4 +55,9 @@ export default StyleSheet.create({
     color: '#333333',
     marginBottom: 5, // Adds space between text elements
   },
+  image: {
+    width: 200, 
+    height: 100,
+    marginLeft: '25 %'
+  }
 });
