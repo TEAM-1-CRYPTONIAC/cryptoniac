@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
-import { getCryptoDetails } from './APIKEY';
+import { getCryptoPrices } from './APIKEY';
+import styles from '../styles/Styles2';
 
 const Detailed = ({ route }) => {
   const { cryptoId } = route.params;
@@ -11,8 +12,12 @@ const Detailed = ({ route }) => {
   useEffect(() => {
     const fetchCryptoDetails = async () => {
       try {
-        const details = await getCryptoDetails(cryptoId);
-        setCryptoDetails(details);
+        const response = await getCryptoPrices();
+        const crypto = response.data.find(crypto => crypto.id === cryptoId);
+        if (!crypto) {
+          throw new Error('Crypto details not found');
+        }
+        setCryptoDetails(crypto);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching crypto details:', error);
@@ -36,23 +41,25 @@ const Detailed = ({ route }) => {
     );
   }
 
-  if (!cryptoDetails) {
-    return (
-      <View>
-        <Text>No data available for this cryptocurrency</Text>
-      </View>
-    );
-  }
-
   return (
-    <View>
-      <Text>Name: {cryptoDetails.name}</Text>
-      <Text>Symbol: {cryptoDetails.symbol}</Text>
-      <Text>Price: ${cryptoDetails.price}</Text>
-      <Text>Market Cap: ${cryptoDetails.market_cap}</Text>
-      <Text>Volume (24h): ${cryptoDetails.volume_24h}</Text>
-      <Text>Circulating Supply: {cryptoDetails.circulating_supply}</Text>
-      <Text>Total Supply: {cryptoDetails.total_supply}</Text>
+    <View style={styles.container}>
+      <Text>Market Cap Rank: {cryptoDetails?.market_cap?.toFixed(3)}</Text>
+      <Text>Name: {cryptoDetails?.name}</Text>
+      <Text>Symbol: {cryptoDetails?.symbol}</Text>
+      <Text style={styles.price}>Price: {'$' + cryptoDetails?.quote?.USD?.price?.toFixed(3)}</Text>
+      <Text>Circulating Supply: {cryptoDetails?.circulating_supply?.toFixed(3)}</Text>
+      <Text>Total Supply: {cryptoDetails?.total_supply?.toFixed(3)}</Text>
+      <Text>Max Supply: {cryptoDetails?.max_supply?.toFixed(3)}</Text>
+      <Text>Number of Market Pairs: {cryptoDetails?.num_market_pairs?.toFixed(3)}</Text>
+      <Text style={[styles.percentChange, { color: cryptoDetails.quote.USD.percent_change_24h >= 0 ? 'green' : 'red' }]}>
+        Percent Change (24h): {cryptoDetails?.quote?.USD?.percent_change_24h?.toFixed(3)}%
+      </Text>
+      <Text style={[styles.percentChange, { color: cryptoDetails.quote.USD.percent_change_1h >= 0 ? 'green' : 'red' }]}>
+        Percent Change (1h): {cryptoDetails?.quote?.USD?.percent_change_1h?.toFixed(3)}%
+      </Text>
+      <Text style={[styles.percentChange, { color: cryptoDetails.quote.USD.percent_change_7d >= 0 ? 'green' : 'red' }]}>
+        Percent Change (7d): {cryptoDetails?.quote?.USD?.percent_change_7d?.toFixed(3)}%
+      </Text>
     </View>
   );
 };

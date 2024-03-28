@@ -26,45 +26,31 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#333333',
   },
-  text: {
+  searchInput: {
+    fontSize: 20,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    backgroundColor: '#fff',
+  },
+  itemContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  priceContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  price: {
     fontSize: 16,
-    color: '#666666',
+    marginLeft: 10,
   },
-  errorText: {
+  percentChange: {
     fontSize: 16,
-    color: 'red',
-    textAlign: 'center', // Centers the text
-    marginTop: 20, // Adds space at the top
+    marginLeft: 10,
   },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center', // Centers the loading spinner vertically
-    alignItems: 'center', // Centers the loading spinner horizontally
-  },
-  detailContainer: {
-    padding: 20,
-  },
-  detailTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 10, // Adds space below the title
-    color: '#0047AB', // A shade of blue
-  },
-  detailText: {
-    fontSize: 18,
-    color: '#333333',
-    marginBottom: 5, // Adds space between text elements
-  },
-  image: {
-    width: 200, 
-    height: 100,
-    marginLeft: '25 %'
-  },
-  searchBar: {
-    flexDirection: 'row'
-  },
-  searchInput:
-  {
-    fontSize: 20
-  }
 });

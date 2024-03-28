@@ -3,7 +3,6 @@ import { View, Text, TextInput, FlatList, TouchableOpacity, ActivityIndicator, I
 import { getCryptoPrices } from './APIKEY';
 import styles from '../styles/Styles';
 
-
 const LandingPage = ({ navigation }) => {
   const [cryptos, setCryptos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +12,12 @@ const LandingPage = ({ navigation }) => {
     const fetchPrices = async () => {
       try {
         const data = await getCryptoPrices();
-        setCryptos(data.data); 
+        // Remove description from each crypto if present
+        const filteredData = data.data.map(crypto => {
+          const { description, ...rest } = crypto;
+          return rest;
+        });
+        setCryptos(filteredData);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -42,7 +46,7 @@ const LandingPage = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-        <TextInput
+      <TextInput
         style={styles.searchInput}
         onChangeText={handleSearch}
         value={searchText}
@@ -57,8 +61,15 @@ const LandingPage = ({ navigation }) => {
             style={styles.item}
             onPress={() => navigation.navigate('CryptoDetail', { cryptoId: item.id })}
           >
-            <Text style={styles.title}>{item.name} ({item.symbol})</Text>
-            <Text style={styles.description}>Price: ${item.quote.USD.price.toFixed(2)}</Text> 
+            <View style={styles.itemContent}>
+              <Text style={styles.title}>{item.name} ({item.symbol})</Text>
+              <View style={styles.priceContainer}>
+                <Text style={[styles.percentChange, { color: item.quote.USD.percent_change_24h >= 0 ? 'green' : 'red' }]}>
+                  {item.quote.USD.percent_change_24h.toFixed(2) + '%'}
+                </Text>
+                <Text style={styles.price}>{'$' + item.quote.USD.price.toFixed(2)}</Text>
+              </View>
+            </View>
           </TouchableOpacity>
         )}
       />
