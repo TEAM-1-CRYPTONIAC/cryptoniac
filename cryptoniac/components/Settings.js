@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Button } from 'react-native';
-import { useTheme } from './ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 
 const Settingspage = () => {
   const { toggleTheme } = useTheme();

@@ -10,7 +10,7 @@ import LandingPage from './cryptoniac/components/Landingpage';
 import CryptoDetailPage from './cryptoniac/components/Detailed';
 import SettingsPage from './cryptoniac/components/Settings';
 import FavoritesPage from './cryptoniac/components/Favorites';
-import { ThemeProvider } from './cryptoniac/components/ThemeContext';
+import { ThemeProvider } from './cryptoniac/context/ThemeContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

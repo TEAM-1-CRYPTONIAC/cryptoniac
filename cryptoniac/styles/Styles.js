@@ -59,15 +59,94 @@ const lightTheme = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+  icon: {
+    color: '#000000'
+  },
+  detailContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    padding: 20,
+  },
+  detailTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+  },
+  detailText: {
+    fontSize: 18,
+    color: '#555',
+    marginBottom: 5,
+  },
+  errorText: {
+    fontSize: 18,
+    color: 'red',
+    marginBottom: 10,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  detailPrice: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+  },
+  percentChange: {
+    fontSize: 18,
+    marginBottom: 5,
+  },
 });
 
 const darkTheme = StyleSheet.create({
   ...lightTheme,
   container: {
     ...lightTheme.container,
-    backgroundColor: 'blue'
+    backgroundColor: '#000000'
+  },
+  item: {
+    ...lightTheme.item,
+    backgroundColor: '#312f31',
+    shadowColor: '#fff'
+  },
+  title: {
+    ...lightTheme.title,
+    color: '#a7a7a7'
+  },
+  searchInput: {
+    ...lightTheme.searchInput,
+    backgroundColor: '#3f3f41',
+    borderColor: '#000000'
+  },
+  price: {
+    ...lightTheme.price,
+    color: '#a7a7a7'
+
+  },
+  icon: {
+    ...lightTheme.icon,
+    color: '#a7a7a7'
+  },
+  detailContainer: {
+    ...lightTheme.detailContainer,
+    backgroundColor: '#000000'
+  },
+  detailTitle: {
+    ...lightTheme.detailTitle,
+    color: '#e1dfdf'
+  },
+  detailText: {
+    ...lightTheme.detailText,
+    color: '#a7a7a7'
+  },
+  detailPrice: {
+    ...lightTheme.detailPrice,
+    color: '#a7a7a7'
   }
+
 })
 
 export {lightTheme, darkTheme}

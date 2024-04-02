@@ -3,7 +3,7 @@ import { View, Text, TextInput, FlatList, TouchableOpacity, ActivityIndicator, I
 import { getCryptoPrices } from './APIKEY';
 import styles from '../styles/Styles';
 import { Icon } from 'react-native-paper';
-import { useTheme } from './ThemeContext';
+import { useTheme } from '../context/ThemeContext';
 
 const LandingPage = ({ navigation }) => {
   const [cryptos, setCryptos] = useState([]);
@@ -50,7 +50,7 @@ const LandingPage = ({ navigation }) => {
   return (
     <View style={theme.container}>
       <View style={theme.searchView}>
-      <Icon source={'database-search'} size={28}/>
+      <Icon style={theme.icon} source={'database-search'} size={28}/>
       <TextInput
         style={theme.searchInput}
         onChangeText={handleSearch}
