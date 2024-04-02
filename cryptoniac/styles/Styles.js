@@ -29,12 +29,14 @@ export default StyleSheet.create({
   searchInput: {
     fontSize: 20,
     marginBottom: 10,
+    marginLeft: 10,
     paddingHorizontal: 10,
     paddingVertical: 8,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
     backgroundColor: '#fff',
+    width: '83%'
   },
   itemContent: {
     flexDirection: 'row',
@@ -53,4 +55,9 @@ export default StyleSheet.create({
     fontSize: 16,
     marginLeft: 10,
   },
+  searchView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
