@@ -1,12 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Button } from 'react-native';
+import { useTheme } from './ThemeContext';
 
-const SettingsPage = () => {
+const Settingspage = () => {
+  const { toggleTheme } = useTheme();
+
   return (
     <View>
-      <Text>Settings Page</Text>
+      <Button title="Toggle Theme" onPress={toggleTheme} />
     </View>
   );
 };
 
-export default SettingsPage;
+export default Settingspage

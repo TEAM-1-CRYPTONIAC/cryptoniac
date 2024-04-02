@@ -10,6 +10,7 @@ import LandingPage from './cryptoniac/components/Landingpage';
 import CryptoDetailPage from './cryptoniac/components/Detailed';
 import SettingsPage from './cryptoniac/components/Settings';
 import FavoritesPage from './cryptoniac/components/Favorites';
+import { ThemeProvider } from './cryptoniac/components/ThemeContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,6 +40,7 @@ export default function App() {
   return (
     <PaperProvider>
       <SafeAreaProvider>
+        <ThemeProvider>
         <NavigationContainer>
           <Tab.Navigator>
             <Tab.Screen name="Home" component={HomeStack} />
@@ -46,6 +48,7 @@ export default function App() {
             <Tab.Screen name="Favorites" component={FavoritesPage} />
           </Tab.Navigator>
         </NavigationContainer>
+        </ThemeProvider>
       </SafeAreaProvider>
     </PaperProvider>
   );
