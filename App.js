@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider as PaperProvider, Icon } from 'react-native-paper';
 import styles from './cryptoniac/styles/Styles';
 import LandingPage from './cryptoniac/components/Landingpage';
 import CryptoDetailPage from './cryptoniac/components/Detailed';
@@ -21,17 +21,14 @@ const HomeStack = () => {
       <Stack.Screen
         name="Landing"
         options={{
-          headerRight: () => (
-            <Image
-              style={{ width: 100, height: 40 }}
-              source={require('./cryptoniac/assets/cryplogo.png')}
-              resizeMode="contain"
-            />
-          ),
+          headerShown: false,
         }}
         component={LandingPage}
       />
-      <Stack.Screen name="CryptoDetail" component={CryptoDetailPage} />
+      <Stack.Screen 
+      name="CryptoDetail" 
+      options={{ headerStyle: { backgroundColor: '#a7a7a7'}}}
+      component={CryptoDetailPage} />
     </Stack.Navigator>
   );
 };
@@ -42,10 +39,20 @@ export default function App() {
       <SafeAreaProvider>
         <ThemeProvider>
         <NavigationContainer>
-          <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeStack} />
-            <Tab.Screen name="Settings" component={SettingsPage} />
-            <Tab.Screen name="Favorites" component={FavoritesPage} />
+          <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '#6033c1'}, tabBarInactiveBackgroundColor: '#000000', tabBarActiveBackgroundColor: '#27202d'}}>
+            <Tab.Screen name="Home" component={HomeStack} 
+            options={{ headerRight: () => (
+            <Image
+              style={{ width: 100, height: 40 }}
+              source={require('./cryptoniac/assets/cryplogo.png')}
+              resizeMode="contain"/>
+          ), tabBarIcon: () => ( <Icon source='home' size={30} color='#ffffff'/>)}}/>
+
+            <Tab.Screen name="Settings" component={SettingsPage} 
+            options={{ tabBarIcon: () => ( <Icon source='cog' size={30} color='#ffffff'/>)}}/>
+
+            <Tab.Screen name="Favorites" component={FavoritesPage} 
+            options={{tabBarIcon: () => ( <Icon source='heart' size={30} color='#ffffff'/>)}}/>
           </Tab.Navigator>
         </NavigationContainer>
         </ThemeProvider>

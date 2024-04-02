@@ -119,7 +119,8 @@ const darkTheme = StyleSheet.create({
   searchInput: {
     ...lightTheme.searchInput,
     backgroundColor: '#3f3f41',
-    borderColor: '#000000'
+    borderColor: '#000000',
+
   },
   price: {
     ...lightTheme.price,
