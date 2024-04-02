@@ -3,11 +3,13 @@ import { View, Text, TextInput, FlatList, TouchableOpacity, ActivityIndicator, I
 import { getCryptoPrices } from './APIKEY';
 import styles from '../styles/Styles';
 import { Icon } from 'react-native-paper';
+import { useTheme } from './ThemeContext';
 
 const LandingPage = ({ navigation }) => {
   const [cryptos, setCryptos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState('');
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -39,18 +41,18 @@ const LandingPage = ({ navigation }) => {
 
   if (loading) {
     return (
-      <View style={styles.container}>
+      <View style={theme.container}>
         <ActivityIndicator size="large" />
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.searchView}>
+    <View style={theme.container}>
+      <View style={theme.searchView}>
       <Icon source={'database-search'} size={28}/>
       <TextInput
-        style={styles.searchInput}
+        style={theme.searchInput}
         onChangeText={handleSearch}
         value={searchText}
         placeholder="Search by name..."
@@ -61,16 +63,16 @@ const LandingPage = ({ navigation }) => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity
-            style={styles.item}
+            style={theme.item}
             onPress={() => navigation.navigate('CryptoDetail', { cryptoId: item.id })}
           >
-            <View style={styles.itemContent}>
-              <Text style={styles.title}>{item.name} ({item.symbol})</Text>
-              <View style={styles.priceContainer}>
-                <Text style={[styles.percentChange, { color: item.quote.USD.percent_change_24h >= 0 ? 'green' : 'red' }]}>
+            <View style={theme.itemContent}>
+              <Text style={theme.title}>{item.name} ({item.symbol})</Text>
+              <View style={theme.priceContainer}>
+                <Text style={[theme.percentChange, { color: item.quote.USD.percent_change_24h >= 0 ? 'green' : 'red' }]}>
                   {item.quote.USD.percent_change_24h.toFixed(2) + '%'}
                 </Text>
-                <Text style={styles.price}>{'$' + item.quote.USD.price.toFixed(2)}</Text>
+                <Text style={theme.price}>{'$' + item.quote.USD.price.toFixed(2)}</Text>
               </View>
             </View>
           </TouchableOpacity>

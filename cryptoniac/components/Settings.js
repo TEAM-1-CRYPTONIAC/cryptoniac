@@ -4,9 +4,10 @@ import { useTheme } from './ThemeContext';
 
 const Settingspage = () => {
   const { toggleTheme } = useTheme();
+  const {theme} = useTheme()
 
   return (
-    <View>
+    <View style={theme.container}>
       <Button title="Toggle Theme" onPress={toggleTheme} />
     </View>
   );

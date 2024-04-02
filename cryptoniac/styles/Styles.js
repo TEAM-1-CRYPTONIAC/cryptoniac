@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
+const lightTheme = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
@@ -61,3 +61,13 @@ export default StyleSheet.create({
     alignItems: 'center',
   }
 });
+
+const darkTheme = StyleSheet.create({
+  ...lightTheme,
+  container: {
+    ...lightTheme.container,
+    backgroundColor: 'blue'
+  }
+})
+
+export {lightTheme, darkTheme}
