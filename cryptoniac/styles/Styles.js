@@ -61,7 +61,7 @@ const lightTheme = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    color: '#000000'
+    color: '#f6eded'
   },
   detailContainer: {
     flex: 1,
@@ -114,13 +114,16 @@ const darkTheme = StyleSheet.create({
   },
   title: {
     ...lightTheme.title,
-    color: '#a7a7a7'
+    color: '#d6d6d6'
   },
   searchInput: {
     ...lightTheme.searchInput,
-    backgroundColor: '#3f3f41',
-    borderColor: '#000000',
-
+    backgroundColor: '#626262',
+    borderColor: '#000000'
+  },
+  searchView: {
+    ...lightTheme.searchView,
+    backgroundColor: '#000000'
   },
   price: {
     ...lightTheme.price,

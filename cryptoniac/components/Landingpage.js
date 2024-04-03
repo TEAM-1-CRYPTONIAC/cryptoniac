@@ -50,12 +50,13 @@ const LandingPage = ({ navigation }) => {
   return (
     <View style={theme.container}>
       <View style={theme.searchView}>
-      <Icon style={theme.icon} source={'database-search'} size={28}/>
+      <Icon color='#4c86f1' source={'database-search'} size={30}/>
       <TextInput
         style={theme.searchInput}
         onChangeText={handleSearch}
         value={searchText}
         placeholder="Search by name..."
+        placeholderTextColor={theme.searchInput.placeholderTextColor}
       />
       </View>
       <FlatList

@@ -39,7 +39,8 @@ export default function App() {
       <SafeAreaProvider>
         <ThemeProvider>
         <NavigationContainer>
-          <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '#6033c1'}, tabBarInactiveBackgroundColor: '#000000', tabBarActiveBackgroundColor: '#27202d'}}>
+          <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '#161518'}, tabBarActiveTintColor: '#ffffff', headerTintColor: '#ffffff', tabBarInactiveBackgroundColor: '#000000', tabBarActiveBackgroundColor: '#477ee5'}}>
+           
             <Tab.Screen name="Home" component={HomeStack} 
             options={{ headerRight: () => (
             <Image
