@@ -7,7 +7,7 @@ const lightTheme = StyleSheet.create({
     paddingTop: 50, // Adjust the padding as needed
   },
   item: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f8fcff',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -99,6 +99,35 @@ const lightTheme = StyleSheet.create({
     fontSize: 18,
     marginBottom: 5,
   },
+  touchableOpacity : {
+    backgroundColor: '#f8fcff',
+    padding: 20,
+    marginBottom: 30,
+    marginTop: 8,
+    marginHorizontal: 16,
+    borderRadius: 5,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  touchableOpacityText: {
+    fontSize: 22,
+    textAlign: 'center',
+  },
+  infoText: {
+    marginLeft: 18,
+    fontSize: 16
+  },
+  cryptoniac: {
+    marginTop: '90%',
+    fontSize: 19,
+    textAlign: 'center'
+  }
 });
 
 const darkTheme = StyleSheet.create({
@@ -148,6 +177,22 @@ const darkTheme = StyleSheet.create({
   },
   detailPrice: {
     ...lightTheme.detailPrice,
+    color: '#a7a7a7'
+  },
+  touchableOpacity : {
+    ...lightTheme.touchableOpacity,
+    backgroundColor:'#3a3939'
+  },
+  touchableOpacityText: {
+    ...lightTheme.touchableOpacityText,
+    color: '#f4f1f1'
+  },
+  infoText: {
+    ...lightTheme.infoText,
+    color: '#a7a7a7'
+  },
+  cryptoniac: {
+    ...lightTheme.cryptoniac,
     color: '#a7a7a7'
   }
 

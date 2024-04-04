@@ -42,12 +42,12 @@ export default function App() {
           <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '#161518'}, tabBarActiveTintColor: '#ffffff', headerTintColor: '#ffffff', tabBarInactiveBackgroundColor: '#000000', tabBarActiveBackgroundColor: '#477ee5'}}>
            
             <Tab.Screen name="Home" component={HomeStack} 
-            options={{ headerRight: () => (
+            options={{/*  headerRight: () => (
             <Image
               style={{ width: 100, height: 40 }}
               source={require('./cryptoniac/assets/cryplogo.png')}
               resizeMode="contain"/>
-          ), tabBarIcon: () => ( <Icon source='home' size={30} color='#ffffff'/>)}}/>
+          ),  */tabBarIcon: () => ( <Icon source='home' size={30} color='#ffffff'/>)}}/>
 
             <Tab.Screen name="Settings" component={SettingsPage} 
             options={{ tabBarIcon: () => ( <Icon source='cog' size={30} color='#ffffff'/>)}}/>
