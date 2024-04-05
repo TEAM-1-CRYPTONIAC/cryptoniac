@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { getCryptoPrices } from './APIKEY';
 import styles from '../styles/Styles';
 import { useTheme } from '../context/ThemeContext';
-import { FavouriteContext } from '../context/FavouritesContext';
+
 
 const Detailed = ({ route }) => {
   const { cryptoId } = route.params;
@@ -11,7 +11,7 @@ const Detailed = ({ route }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { theme } = useTheme();
-  const {setFavourite } = useContext(FavouriteContext)
+
 
 
   useEffect(() => {
