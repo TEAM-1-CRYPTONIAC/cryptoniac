@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, FlatList, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
 import { getCryptoPrices } from './APIKEY';
-import styles from '../styles/Styles';
 import { Icon } from 'react-native-paper';
 import { useTheme } from '../context/ThemeContext';
 

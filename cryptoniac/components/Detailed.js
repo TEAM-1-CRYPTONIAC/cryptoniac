@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { getCryptoPrices } from './APIKEY';
 import styles from '../styles/Styles';
 import { useTheme } from '../context/ThemeContext';
+import { FavouriteContext } from '../context/FavouritesContext';
 
 const Detailed = ({ route }) => {
   const { cryptoId } = route.params;
@@ -10,6 +11,8 @@ const Detailed = ({ route }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { theme } = useTheme();
+  const {setFavourite } = useContext(FavouriteContext)
+
 
   useEffect(() => {
     const fetchCryptoDetails = async () => {
@@ -43,6 +46,11 @@ const Detailed = ({ route }) => {
     );
   }
 
+  const AddFavourite = () => {
+
+    const newFavourite = {}
+  }
+
   return (
     <View style={theme.detailContainer}>
       <Text style={theme.detailText}>Market Cap Rank: {cryptoDetails?.market_cap?.toFixed(3)}</Text>
@@ -62,6 +70,10 @@ const Detailed = ({ route }) => {
       <Text style={[theme.percentChange, { color: cryptoDetails.quote.USD.percent_change_7d >= 0 ? 'green' : 'red' }]}>
         Percent Change (7d): {cryptoDetails?.quote?.USD?.percent_change_7d?.toFixed(3)}%
       </Text>
+
+      <TouchableOpacity style={theme.favouriteButton}/* onPress={toggleFavourite} */> 
+      <Text style={theme.favouriteButtonText}>Add to Favourites</Text>
+      </TouchableOpacity>
     </View>
   );
 };

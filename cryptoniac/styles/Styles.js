@@ -127,6 +127,25 @@ const lightTheme = StyleSheet.create({
     marginTop: '90%',
     fontSize: 19,
     textAlign: 'center'
+  },
+  favouriteButton: {
+    backgroundColor: '#f8fcff',
+    padding: 20,
+    marginBottom: 30,
+    marginTop: '60 %',
+    borderRadius: 5,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  favouriteButtonText: {
+    fontSize: 22,
+    textAlign: 'center',
   }
 });
 
@@ -194,6 +213,14 @@ const darkTheme = StyleSheet.create({
   cryptoniac: {
     ...lightTheme.cryptoniac,
     color: '#a7a7a7'
+  },
+  favouriteButton: {
+    ...lightTheme.favouriteButton,
+    backgroundColor: '#3a3939'
+  },
+  favouriteButtonText: {
+    ...lightTheme.favouriteButtonText,
+    color: '#e9e6e6'
   }
 
 })
