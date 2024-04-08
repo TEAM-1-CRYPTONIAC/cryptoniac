@@ -26,8 +26,8 @@ const HomeStack = () => {
         component={LandingPage}
       />
       <Stack.Screen 
-      name="CryptoDetail" 
-      options={{ headerStyle: { backgroundColor: '#a7a7a7'}}}
+      name="CryptoDetail"
+      options={{ headerStyle: { backgroundColor: '#477ee5'}}}
       component={CryptoDetailPage} />
     </Stack.Navigator>
   );
@@ -39,7 +39,7 @@ export default function App() {
       <SafeAreaProvider>
         <ThemeProvider>
         <NavigationContainer>
-          <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '#161518'}, tabBarActiveTintColor: '#ffffff', headerTintColor: '#ffffff', tabBarInactiveBackgroundColor: '#000000', tabBarActiveBackgroundColor: '#477ee5'}}>
+          <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '#161518'}, tabBarActiveTintColor: '#ffffff', headerTintColor: '#ffffff', tabBarInactiveBackgroundColor: '#000000', tabBarActiveBackgroundColor: '#477ee5', tabBarStyle: {borderTopWidth: 0}}}>
            
             <Tab.Screen name="Home" component={HomeStack} 
             options={{/*  headerRight: () => (
