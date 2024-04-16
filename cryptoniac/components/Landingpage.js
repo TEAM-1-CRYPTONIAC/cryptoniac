@@ -49,7 +49,7 @@ const LandingPage = ({ navigation }) => {
   return (
     <View style={theme.container}>
       <View style={theme.searchView}>
-      <Icon color='#4c86f1' source={'database-search'} size={30}/>
+      <Icon color='#4c86f1' source={'database-search'} size={38}/>
       <TextInput
         style={theme.searchInput}
         onChangeText={handleSearch}
@@ -69,7 +69,7 @@ const LandingPage = ({ navigation }) => {
             <View style={theme.itemContent}>
               <Text style={theme.title}>{item.name} ({item.symbol})</Text>
               <View style={theme.priceContainer}>
-                <Text style={[theme.percentChange, { color: item.quote.USD.percent_change_24h >= 0 ? 'green' : 'red' }]}>
+                <Text style={[theme.percentChange, { color: item.quote.USD.percent_change_24h >= 0 ? '#02d802' : 'red' }]}>
                   {item.quote.USD.percent_change_24h.toFixed(2) + '%'}
                 </Text>
                 <Text style={theme.price}>{'$' + item.quote.USD.price.toFixed(2)}</Text>

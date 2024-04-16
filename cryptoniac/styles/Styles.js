@@ -4,7 +4,7 @@ const lightTheme = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
-    paddingTop: 50, // Adjust the padding as needed
+    paddingTop: '5 %', // Adjust the padding as needed
   },
   item: {
     backgroundColor: '#f8fcff',
@@ -19,7 +19,7 @@ const lightTheme = StyleSheet.create({
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
-    elevation: 4, // Remove elevation for iOS or adjust as necessary
+    elevation: 4,
   },
   title: {
     fontSize: 18,
@@ -29,9 +29,10 @@ const lightTheme = StyleSheet.create({
   searchInput: {
     fontSize: 20,
     marginBottom: 10,
-    marginLeft: 10,
+    marginLeft: 5,
+    marginRight: 10,
     paddingHorizontal: 10,
-    paddingVertical: 8,
+    paddingVertical: 15,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
@@ -69,14 +70,17 @@ const lightTheme = StyleSheet.create({
     padding: 20,
   },
   detailTitle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 10,
+    borderBottomWidth: 2,
+    borderBottomColor: '#333',
+    paddingBottom: 10,
+    marginBottom: 20
   },
   detailText: {
     fontSize: 18,
-    color: '#555',
+    color: '#333',
     marginBottom: 5,
   },
   errorText: {
@@ -89,11 +93,14 @@ const lightTheme = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  priceBox: {
+    marginBottom: 20
+  },
   detailPrice: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 10,
+
   },
   percentChange: {
     fontSize: 18,
@@ -188,15 +195,16 @@ const darkTheme = StyleSheet.create({
   },
   detailTitle: {
     ...lightTheme.detailTitle,
-    color: '#e1dfdf'
+    color: '#e1dfdf',
+    borderBottomColor: '#e1dfdf'
   },
   detailText: {
     ...lightTheme.detailText,
-    color: '#a7a7a7'
+    color: '#e1dfdf'
   },
   detailPrice: {
     ...lightTheme.detailPrice,
-    color: '#a7a7a7'
+    color: '#e1dfdf'
   },
   touchableOpacity : {
     ...lightTheme.touchableOpacity,
