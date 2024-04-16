@@ -31,7 +31,12 @@ const LandingPage = ({ navigation }) => {
   }, []);
 
   const handleSearch = text => {
-    setSearchText(text);
+    const onlyLetters = /^[A-Za-z]+$/
+    if (onlyLetters.test(text) || text === '') {
+    setSearchText(text)}
+    else {
+      alert('Please search only with letters of the English alphabet')
+    };
   };
 
   const filteredCryptos = cryptos.filter(
@@ -54,6 +59,7 @@ const LandingPage = ({ navigation }) => {
         style={theme.searchInput}
         onChangeText={handleSearch}
         value={searchText}
+        keyboardType="ascii-capable"
         placeholder="Search by name..."
         placeholderTextColor={theme.searchInput.placeholderTextColor}
       />

@@ -41,7 +41,7 @@ export default function App() {
         <NavigationContainer>
           <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '#161518'}, tabBarActiveTintColor: '#ffffff', 
           headerTintColor: '#ffffff', tabBarInactiveBackgroundColor: '#000000', tabBarActiveBackgroundColor: '#477ee5',
-          tabBarStyle: {borderTopWidth: 0, height: 65}, tabBarLabelStyle: {fontSize: 15}}}>
+          tabBarStyle: {borderTopWidth: 0, height: 65}, tabBarLabelStyle: {fontSize: 15, paddingBottom: 5}}}>
            
             <Tab.Screen name="Home" component={HomeStack} 
             options={{/*  headerRight: () => (
@@ -49,13 +49,13 @@ export default function App() {
               style={{ width: 100, height: 40 }}
               source={require('./cryptoniac/assets/cryplogo.png')}
               resizeMode="contain"/>
-          ),  */tabBarIcon: () => ( <Icon source='home' size={38} color='#ffffff'/>)}}/>
+          ),  */tabBarIcon: () => ( <Icon source='home' size={34} color='#ffffff'/>)}}/>
 
             <Tab.Screen name="Settings" component={SettingsPage} 
-            options={{ tabBarIcon: () => ( <Icon source='cog' size={38} color='#ffffff'/>)}}/>
+            options={{ tabBarIcon: () => ( <Icon source='cog' size={34} color='#ffffff'/>)}}/>
 
             <Tab.Screen name="Favorites" component={FavoritesPage} 
-            options={{tabBarIcon: () => ( <Icon source='heart' size={38} color='#ffffff'/>)}}/>
+            options={{tabBarIcon: () => ( <Icon source='heart' size={34} color='#ffffff'/>)}}/>
           </Tab.Navigator>
         </NavigationContainer>
         </ThemeProvider>
