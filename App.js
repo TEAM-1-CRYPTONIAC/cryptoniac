@@ -11,6 +11,7 @@ import CryptoDetailPage from './cryptoniac/components/Detailed';
 import SettingsPage from './cryptoniac/components/Settings';
 import FavoritesPage from './cryptoniac/components/Favorites';
 import { ThemeProvider } from './cryptoniac/context/ThemeContext';
+import { FavouriteProvider } from './cryptoniac/context/FavouritesContext';  // Import the FavouriteProvider
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,26 +39,23 @@ export default function App() {
     <PaperProvider>
       <SafeAreaProvider>
         <ThemeProvider>
+        <FavouriteProvider>
         <NavigationContainer>
           <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '#161518'}, tabBarActiveTintColor: '#ffffff', 
           headerTintColor: '#ffffff', tabBarInactiveBackgroundColor: '#000000', tabBarActiveBackgroundColor: '#477ee5',
           tabBarStyle: {borderTopWidth: 0, height: 65}, tabBarLabelStyle: {fontSize: 15, paddingBottom: 5}}}>
            
             <Tab.Screen name="Home" component={HomeStack} 
-            options={{/*  headerRight: () => (
-            <Image
-              style={{ width: 100, height: 40 }}
-              source={require('./cryptoniac/assets/cryplogo.png')}
-              resizeMode="contain"/>
-          ),  */tabBarIcon: () => ( <Icon source='home' size={34} color='#ffffff'/>)}}/>
+            options={{ tabBarIcon: () => ( <Icon source='home' size={34} color='#ffffff'/>)}}/>
 
             <Tab.Screen name="Settings" component={SettingsPage} 
             options={{ tabBarIcon: () => ( <Icon source='cog' size={34} color='#ffffff'/>)}}/>
 
             <Tab.Screen name="Favorites" component={FavoritesPage} 
-            options={{tabBarIcon: () => ( <Icon source='heart' size={34} color='#ffffff'/>)}}/>
+            options={{ tabBarIcon: () => ( <Icon source='heart' size={34} color='#ffffff'/>)}}/>
           </Tab.Navigator>
         </NavigationContainer>
+        </FavouriteProvider>
         </ThemeProvider>
       </SafeAreaProvider>
     </PaperProvider>

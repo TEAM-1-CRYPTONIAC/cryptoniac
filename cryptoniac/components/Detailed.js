@@ -1,83 +1,81 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
-import { getCryptoPrices } from './APIKEY';
-import styles from '../styles/Styles';
+import { LineChart } from 'react-native-chart-kit';
+import { Dimensions } from 'react-native';
+import { getCryptoDetails, getCryptoHistoricalData } from './APIKEY';
 import { useTheme } from '../context/ThemeContext';
+import { FavouriteContext } from '../context/FavouritesContext';
 
+const screenWidth = Dimensions.get('window').width;
 
 const Detailed = ({ route }) => {
   const { cryptoId } = route.params;
   const [cryptoDetails, setCryptoDetails] = useState(null);
+  const [historicalData, setHistoricalData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const { theme } = useTheme();
-
-
+  const { addFavourite } = useContext(FavouriteContext);
 
   useEffect(() => {
-    const fetchCryptoDetails = async () => {
+    const fetchData = async () => {
       try {
-        const response = await getCryptoPrices();
-        const crypto = response.data.find(crypto => crypto.id === cryptoId);
-        if (!crypto) {
-          throw new Error('Crypto details not found');
-        }
-        setCryptoDetails(crypto);
+        const details = await getCryptoDetails(cryptoId);
+        const history = await getCryptoHistoricalData(cryptoId);
+        setCryptoDetails(details);
+        setHistoricalData(history.prices.map((price) => ({x: new Date(price[0]), y: price[1]})));
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching crypto details:', error);
-        setError(error.message);
+        console.error('Failed to fetch data:', error);
         setLoading(false);
       }
     };
 
-    fetchCryptoDetails();
+    fetchData();
   }, [cryptoId]);
 
   if (loading) {
     return <ActivityIndicator size="large" />;
   }
 
-  if (error) {
-    return (
-      <View>
-        <Text>Error: {error}</Text>
-      </View>
-    );
-  }
-
-  const AddFavourite = () => {
-
-    const newFavourite = {}
-  }
+  const handleAddToFavourite = () => {
+    if (cryptoDetails && cryptoDetails.id) {
+      addFavourite(cryptoDetails);
+      alert('Added to favourites!');
+    } else {
+      alert('Error: Missing cryptocurrency details!');
+    }
+  };
 
   return (
     <View style={theme.detailContainer}>
-      <Text style={theme.detailTitle}>{cryptoDetails?.name} ({cryptoDetails?.symbol}) | Market Cap Rank: {cryptoDetails && cryptoDetails.market_cap ? cryptoDetails.market_cap.toFixed(3) : 
-      (<Text style={{ color: 'red' }}>n/a</Text>)}</Text>
-
-    <View style={theme.priceBox}>
-      <Text style={theme.detailPrice}>Price: {'$' + cryptoDetails?.quote?.USD?.price?.toFixed(3)}</Text>
-      <Text style={[theme.percentChange, { color: cryptoDetails.quote.USD.percent_change_1h >= 0 ? '#02d802' : 'red' }]}>
-        Price Change (1h): {cryptoDetails?.quote?.USD?.percent_change_1h?.toFixed(3)}%
-      </Text>
-      <Text style={[theme.percentChange, { color: cryptoDetails.quote.USD.percent_change_24h >= 0 ? '#02d802' : 'red' }]}>
-        Price Change (24h): {cryptoDetails?.quote?.USD?.percent_change_24h?.toFixed(3)}%
-      </Text>
-      <Text style={[theme.percentChange, { color: cryptoDetails.quote.USD.percent_change_7d >= 0 ? '#02d802' : 'red' }]}>
-        Price Change (7d): {cryptoDetails?.quote?.USD?.percent_change_7d?.toFixed(3)}%
-      </Text>
-    </View>
-
-      <Text style={theme.detailText}>Circulating Supply: {cryptoDetails?.circulating_supply?.toFixed(3)}</Text>
-      <Text style={theme.detailText}>Total Supply: {cryptoDetails?.total_supply?.toFixed(3)}</Text>
-      <Text style={theme.detailText}>Max Supply: {cryptoDetails?.max_supply?.toFixed(3)}</Text>
-      <Text style={theme.detailText}>Number of Market Pairs: {cryptoDetails?.num_market_pairs?.toFixed(3)}</Text>
-
-
-      <TouchableOpacity style={theme.favouriteButton}/* onPress={toggleFavourite} */> 
-      <Text style={theme.favouriteButtonText}>Add to Favourites</Text>
-      </TouchableOpacity>
+      {cryptoDetails && (
+        <>
+          <Text style={theme.title}>{cryptoDetails.name} ({cryptoDetails.symbol})</Text>
+          <LineChart
+            data={{
+              labels: ["30 Days Ago", "20 Days Ago", "10 Days Ago", "Today"],
+              datasets: [{ data: historicalData.map(data => data.y) }]
+            }}
+            width={screenWidth}
+            height={220}
+            chartConfig={{
+              backgroundColor: "#e26a00",
+              backgroundGradientFrom: "#fb8c00",
+              backgroundGradientTo: "#ffa726",
+              decimalPlaces: 2,
+              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            }}
+            style={{
+              marginVertical: 8,
+              borderRadius: 16
+            }}
+          />
+          <TouchableOpacity onPress={handleAddToFavourite} style={theme.favouriteButton}>
+            <Text style={theme.favouriteButtonText}>Add to Favourites</Text>
+          </TouchableOpacity>
+        </>
+      )}
     </View>
   );
 };
