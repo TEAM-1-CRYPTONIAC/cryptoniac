@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { FavouriteContext } from '../context/FavouritesContext';
-import { useNavigation } from '@react-navigation/native';  // Import navigation
+import { useNavigation } from '@react-navigation/native';
 
 const FavoritesPage = () => {
   const { theme } = useTheme();
   const { favourites, removeFavourite } = useContext(FavouriteContext);
-  const navigation = useNavigation();  // Use the navigation hook
+  const navigation = useNavigation();
 
   return (
     <View style={theme.container}>
