@@ -14,7 +14,7 @@ const Settingspage = () => {
       </TouchableOpacity>
 
       <Text style={theme.infoText}> Dollars / Euros:</Text>
-      <TouchableOpacity style={theme.touchableOpacity} /* onPress={ CURRENCY FUNCTION HERE} */ >
+      <TouchableOpacity style={theme.touchableOpacity}>
         <Text style={theme.touchableOpacityText}> Change currency </Text>
       </TouchableOpacity>
 
