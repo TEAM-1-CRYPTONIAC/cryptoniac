@@ -1,12 +1,11 @@
 import axios from 'axios';
 
-const API_KEY = 'CG-UzFjEsJbsCPyL6QZ223iB1zq';  // Replace with your actual API key
+const API_KEY = 'CG-UzFjEsJbsCPyL6QZ223iB1zq';
 
 const api = axios.create({
   baseURL: 'https://api.coingecko.com/api/v3',
   headers: {
-    'Authorization': `Bearer ${API_KEY}`  // If the API uses bearer tokens
-    // Or you might use it as a query parameter in each call if required
+    'Authorization': `Bearer ${API_KEY}`
   }
 });
 
