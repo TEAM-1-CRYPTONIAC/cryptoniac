@@ -39,8 +39,8 @@ export const getCryptoHistoricalData = async (cryptoId) => {
     const response = await api.get(`/coins/${cryptoId}/market_chart`, {
       params: {
         vs_currency: 'usd',
-        days: '90',
-        interval: 'daily'
+        days: '30', // Fetches data for the last 30 days
+        interval: 'daily' // Assuming you want daily data points
       }
     });
     return response.data;
@@ -50,13 +50,14 @@ export const getCryptoHistoricalData = async (cryptoId) => {
   }
 };
 
+
 export const getCryptoPrices = async () => {
   try {
     const response = await api.get('/coins/markets', {
       params: {
         vs_currency: 'usd',
         order: 'market_cap_desc',
-        per_page: 100,
+        per_page: 50,
         page: 1,
         sparkline: false
       }
