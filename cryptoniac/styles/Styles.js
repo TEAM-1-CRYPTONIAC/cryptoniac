@@ -20,6 +20,9 @@ const lightTheme = StyleSheet.create({
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
     elevation: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+   
   },
   title: {
     fontSize: 18,
@@ -52,9 +55,9 @@ const lightTheme = StyleSheet.create({
     fontSize: 16,
     marginLeft: 10,
   },
-  percentChange: {
-    fontSize: 16,
-    marginLeft: 10,
+  priceChangeText: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   searchView: {
     flexDirection: 'row',
@@ -65,18 +68,21 @@ const lightTheme = StyleSheet.create({
     color: '#f6eded'
   },
   detailContainer: {
-    flex: 1,
     backgroundColor: '#fff',
-    padding: 20,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  chart: {
+    borderRadius: 16,
+    backgroundColor: '#000',
+  },
+  chartBackground: {
+    backgroundColor: '#fff'
   },
   detailTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#333',
-    borderBottomWidth: 2,
-    borderBottomColor: '#333',
-    paddingBottom: 10,
-    marginBottom: 20
+    fontSize: 24,
+    margin: 10,
   },
   detailText: {
     fontSize: 18,
@@ -97,8 +103,8 @@ const lightTheme = StyleSheet.create({
     marginBottom: 20
   },
   detailPrice: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 18,
+    marginVertical: 4,
     color: '#333',
 
   },
@@ -127,7 +133,7 @@ const lightTheme = StyleSheet.create({
     textAlign: 'center',
   },
   infoText: {
-    marginLeft: 18,
+
     fontSize: 16
   },
   cryptoniac: {
@@ -136,24 +142,17 @@ const lightTheme = StyleSheet.create({
     textAlign: 'center'
   },
   favouriteButton: {
-    backgroundColor: '#f8fcff',
-    padding: 20,
-    marginBottom: 30,
-    marginTop: '60 %',
+    backgroundColor: '#312f31',
+    padding: 15,
     borderRadius: 5,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
+    marginTop: 10,
   },
   favouriteButtonText: {
+    color: '#fff',
     fontSize: 22,
     textAlign: 'center',
-  }
+  },
+
 });
 
 const darkTheme = StyleSheet.create({

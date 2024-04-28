@@ -13,7 +13,7 @@ const monthNames = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
 
-const styles = StyleSheet.create({
+/* const styles = StyleSheet.create({
   container: {
     backgroundColor: '#000',
     flex: 1,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-});
+}); */
 
 const Detailed = ({ route }) => {
   const { cryptoId } = route.params;
@@ -123,22 +123,22 @@ const Detailed = ({ route }) => {
   const highPrice = cryptoDetails.market_data.high_24h.usd.toFixed(2);
   const lowPrice = cryptoDetails.market_data.low_24h.usd.toFixed(2);
   return (
-    <View style={styles.container}>
+    <View style={theme.detailContainer}>
       {cryptoDetails && (
         <>
-          <Text style={styles.title}>
+          <Text style={theme.detailTitle}>
             {cryptoDetails.name} ({cryptoDetails.symbol.toUpperCase()})
           </Text>
-          <Text style={styles.priceText}>
+          <Text style={theme.detailPrice}>
             Current Price: ${cryptoDetails.market_data.current_price.usd.toFixed(2)}
-            <Text style={[styles.priceChangeText, { color: changeColor }]}>
+            <Text style={[theme.priceChangeText, { color: changeColor }]}>
               {' '}({change >= 0 ? '+' : ''}{change.toFixed(2)} USD, {change >= 0 ? '+' : ''}{percentageChange.toFixed(2)}%)
             </Text>
           </Text>
-          <Text style={styles.priceText}>
+          <Text style={theme.detailPrice}>
             24h High: ${highPrice}
           </Text>
-          <Text style={styles.priceText}>
+          <Text style={theme.detailPrice}>
             24h Low: ${lowPrice}
           </Text>
           <LineChart
@@ -153,12 +153,12 @@ const Detailed = ({ route }) => {
             withHorizontalLines={false}
             withVerticalLines={false}
             bezier
-            style={styles.chart}
+            style={theme.chart}
           />
           <TouchableOpacity
-            style={styles.button}
+            style={theme.favouriteButton}
             onPress={() => addFavourite(cryptoDetails)}>
-            <Text style={styles.buttonText}>Add to Favourites</Text>
+            <Text style={theme.favouriteButtonText}>Add to Favourites</Text>
           </TouchableOpacity>
         </>
       )}
