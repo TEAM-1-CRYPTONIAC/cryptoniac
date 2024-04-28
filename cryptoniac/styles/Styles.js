@@ -78,7 +78,7 @@ const lightTheme = StyleSheet.create({
     backgroundColor: '#000',
   },
   chartBackground: {
-    backgroundColor: '#fff'
+    color: '#ffffff'
   },
   detailTitle: {
     fontSize: 24,
@@ -145,14 +145,20 @@ const lightTheme = StyleSheet.create({
     backgroundColor: '#312f31',
     padding: 15,
     borderRadius: 5,
-    marginTop: 10,
+    marginTop: 20,
   },
   favouriteButtonText: {
     color: '#fff',
     fontSize: 22,
     textAlign: 'center',
   },
-
+  noFavourites: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333333',
+    textAlign: 'center',
+    marginTop: '50 %'
+  }
 });
 
 const darkTheme = StyleSheet.create({
@@ -228,6 +234,10 @@ const darkTheme = StyleSheet.create({
   favouriteButtonText: {
     ...lightTheme.favouriteButtonText,
     color: '#e9e6e6'
+  },
+  noFavourites: {
+    ...lightTheme.noFavourites,
+    color: '#e0e6e6'
   }
 
 })

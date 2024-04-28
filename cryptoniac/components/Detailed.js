@@ -105,14 +105,15 @@ const Detailed = ({ route }) => {
 
   const chartConfig = {
     backgroundColor: '#000',
-    backgroundGradientFrom: '#000',
-    backgroundGradientTo: '#000',
+    backgroundGradientFrom: '#131313',
+    backgroundGradientTo: '#477ee5',
     color: (opacity = 1) => changeColor, // Dynamic color based on price change
     strokeWidth: 2,
     decimalPlaces: 2,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     style: {
       borderRadius: 16,
+      margin: 30
     },
     // ... (other configurations)
   };

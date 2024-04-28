@@ -14,30 +14,30 @@ const FavoritesPage = () => {
   
       {favourites.length > 0 ? (
         <>
-            <Text style={[theme.title, {marginLeft: 18}]}>Press on a coin to see the details</Text>
-        <FlatList
-          data={favourites}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={theme.item}
-              onPress={() => navigation.navigate('CryptoDetail', { cryptoId: item.id })}
-            >
-              <Text style={theme.title}>{item.name} ({item.symbol})</Text>
-            
-              <Text style={theme.infoText}>{/* {'$' + (item?.quote?.USD?.price.toFixed(2) ?? 'N/A')} */}</Text>
+        <Text style={[theme.title, {marginLeft: 18}]}>Press on a coin to see the details</Text>
+          <FlatList
+            data={favourites}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
               <TouchableOpacity
-                onPress={() => removeFavourite(item.id)}
-                style={theme.removeButton}
+                style={theme.item}
+                onPress={() => navigation.navigate('CryptoDetail', { cryptoId: item.id })}
               >
-                <Text style={{color: 'red', }}>Remove</Text>
+                <Text style={theme.title}>{item.name} ({item.symbol})</Text>
+              
+                <Text style={theme.infoText}>{/* {'$' + (item?.quote?.USD?.price.toFixed(2) ?? 'N/A')} */}</Text>
+                <TouchableOpacity
+                  onPress={() => removeFavourite(item.id)}
+                  style={theme.removeButton}
+                >
+                  <Text style={{color: 'red', fontWeight: 'bold'}}>Remove</Text>
+                </TouchableOpacity>
               </TouchableOpacity>
-            </TouchableOpacity>
-          )}
-        />
+            )}
+          />
       </>
       ) : (
-        <Text style={theme.infoText}>No favorites added yet.</Text>
+        <Text style={theme.noFavourites}>No favorites added yet.</Text>
       )}
       
     </View>
