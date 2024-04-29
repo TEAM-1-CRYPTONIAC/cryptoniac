@@ -29,6 +29,18 @@ const lightTheme = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333333',
   },
+  button: {
+    backgroundColor: '#477ee5', // Adjust the background color as needed
+    paddingVertical: 10, // Reduce vertical padding
+    paddingHorizontal: 20, // Reduce horizontal padding
+    borderRadius: 8, // Increase border radius for rounded corners
+    marginHorizontal: 5, // Adjust the margin as needed
+  },
+  buttonText: {
+    color: '#fff', // Adjust the text color as needed
+    fontSize: 16,
+    textAlign: 'center',
+  },
   searchInput: {
     fontSize: 20,
     marginBottom: 10,
@@ -234,6 +246,18 @@ const darkTheme = StyleSheet.create({
   favouriteButtonText: {
     ...lightTheme.favouriteButtonText,
     color: '#e9e6e6'
+  },
+  button: {
+    backgroundColor: '#312f31', // Adjust the background color as needed
+    paddingVertical: 10, // Reduce vertical padding
+    paddingHorizontal: 20, // Reduce horizontal padding
+    borderRadius: 8, // Increase border radius for rounded corners
+    marginHorizontal: 5, // Adjust the margin as needed
+  },
+  buttonText: {
+    color: '#fff', // Adjust the text color as needed
+    fontSize: 16,
+    textAlign: 'center',
   },
   noFavourites: {
     ...lightTheme.noFavourites,

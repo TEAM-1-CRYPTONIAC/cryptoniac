@@ -37,9 +37,9 @@ async function fetchWithRetry(url, params = {}) {
 }
 
 export const getCryptoDetails = (cryptoId) => fetchWithRetry(`/coins/${cryptoId}`);
-export const getCryptoHistoricalData = (cryptoId) => fetchWithRetry(`/coins/${cryptoId}/market_chart`, {
+export const getCryptoHistoricalData = (cryptoId, days = '30') => fetchWithRetry(`/coins/${cryptoId}/market_chart`, {
   vs_currency: 'usd',
-  days: '30',
+  days: days,
   interval: 'daily'
 });
 export const getCryptoPrices = () => fetchWithRetry('/coins/markets', {
