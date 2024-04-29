@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_KEY = 'CG-UzFjEsJbsCPyL6QZ223iB1zq';
+// Assume the API_KEY is set in your environment variables for better security
+const API_KEY = process.env.API_KEY;
 
 const api = axios.create({
   baseURL: 'https://api.coingecko.com/api/v3',
@@ -9,65 +10,44 @@ const api = axios.create({
   }
 });
 
-// Optional: Handle rate limiting with retries
-api.interceptors.response.use(response => response, async (error) => {
+// Refactored retry logic into a separate function
+const handleRateLimit = async (error) => {
   const { config, response } = error;
   const maxRetries = 3;
-
-  if (response && response.status === 429 && config && config.retryCount < maxRetries) {
-    config.retryCount = config.retryCount + 1 || 1;
-    const retryAfter = response.headers['retry-after'] || 2; // Default to 2 seconds if header is missing
+  if (response && response.status === 429 && config && (config.retryCount || 0) < maxRetries) {
+    config.retryCount = (config.retryCount || 0) + 1;
+    const retryAfter = response.headers['retry-after'] || 2;  // Default to 2 seconds if header is missing
     await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
     return api(config);
   }
+  throw error;
+};
 
-  return Promise.reject(error);
+api.interceptors.response.use(response => response, handleRateLimit);
+
+// Standardizing error handling
+async function fetchWithRetry(url, params = {}) {
+  try {
+    const response = await api.get(url, { params });
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching data from ${url}:`, error);
+    throw error;  // Rethrowing the error to be handled by the caller
+  }
+}
+
+export const getCryptoDetails = (cryptoId) => fetchWithRetry(`/coins/${cryptoId}`);
+export const getCryptoHistoricalData = (cryptoId) => fetchWithRetry(`/coins/${cryptoId}/market_chart`, {
+  vs_currency: 'usd',
+  days: '30',
+  interval: 'daily'
 });
-
-export const getCryptoDetails = async (cryptoId) => {
-  try {
-    const response = await api.get(`/coins/${cryptoId}`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching cryptocurrency details:', error);
-    throw error;
-  }
-};
-
-export const getCryptoHistoricalData = async (cryptoId) => {
-  try {
-    const response = await api.get(`/coins/${cryptoId}/market_chart`, {
-      params: {
-        vs_currency: 'usd',
-        days: '30', // Fetches data for the last 30 days
-        interval: 'daily' // Assuming you want daily data points
-      }
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching historical data:', error);
-    throw error;
-  }
-};
-
-
-export const getCryptoPrices = async () => {
-  try {
-    const response = await api.get('/coins/markets', {
-      params: {
-        vs_currency: 'usd',
-        order: 'market_cap_desc',
-        per_page: 50,
-        page: 1,
-        sparkline: false
-      }
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching cryptocurrency prices:', error);
-    throw error;
-  }
-};
-
+export const getCryptoPrices = () => fetchWithRetry('/coins/markets', {
+  vs_currency: 'usd',
+  order: 'market_cap_desc',
+  per_page: 50,
+  page: 1,
+  sparkline: false
+});
 
 export default api;

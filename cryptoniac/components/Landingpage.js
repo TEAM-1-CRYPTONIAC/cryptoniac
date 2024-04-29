@@ -14,7 +14,7 @@ const LandingPage = ({ navigation }) => {
     const fetchPrices = async () => {
       try {
         const data = await getCryptoPrices();
-        setCryptos(data); // Assuming the data is directly usable
+        setCryptos(data); 
         setLoading(false);
       } catch (error) {
         console.log('Failed to fetch prices:', error);

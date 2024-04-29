@@ -25,7 +25,7 @@ const FavoritesPage = () => {
               >
                 <Text style={theme.title}>{item.name} ({item.symbol})</Text>
               
-                <Text style={theme.infoText}>{/* {'$' + (item?.quote?.USD?.price.toFixed(2) ?? 'N/A')} */}</Text>
+                <Text style={theme.infoText}></Text>
                 <TouchableOpacity
                   onPress={() => removeFavourite(item.id)}
                   style={theme.removeButton}
