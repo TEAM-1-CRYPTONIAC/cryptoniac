@@ -41,12 +41,12 @@ const Detailed = ({ route }) => {
     const updateDimensions = () => {
       setScreenWidth(Dimensions.get('window').width);
     };
-
-    Dimensions.addEventListener('change', updateDimensions);
-
-    return () => {
-      Dimensions.removeEventListener('change', updateDimensions);
-    };
+  
+    // Subscribe to dimension changes
+    const dimensionsSubscription = Dimensions.addEventListener('change', updateDimensions);
+  
+    // Cleanup function to remove the listener
+    return () => dimensionsSubscription.remove();
   }, []);
 
   useEffect(() => {

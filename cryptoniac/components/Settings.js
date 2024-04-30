@@ -14,9 +14,9 @@ const Settingspage = () => {
       </TouchableOpacity>
 
       <Text style={theme.infoText}> Dollars / Euros:</Text>
-      <TouchableOpacity style={theme.touchableOpacity}>
-        <Text style={theme.touchableOpacityText}> Change currency </Text>
-      </TouchableOpacity>
+<TouchableOpacity style={theme.touchableOpacity}>
+  <Text style={theme.touchableOpacityText}> Change currency </Text>
+</TouchableOpacity>
 
       <Text style={theme.cryptoniac}> CRYPTONIAC by Team 1</Text>
     </View>
